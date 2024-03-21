@@ -20,7 +20,7 @@ export default async function Home(props:any) {
      )
 }
 
-const getMovieData = async (genre:any) => {
+const getMovieData = async (genre:object) => {
   const request = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`);
   let result = await request.json();
   return result.results;
