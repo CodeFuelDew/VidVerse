@@ -3,7 +3,9 @@ import Nav from "../components/Nav"
 import Results from "../components/Results"
 import requests from "../utils/requests"
 
-export default async function Home(props) {
+
+
+export default async function Home(props:any) {
   const {genre} = props.searchParams;
   let results = null;
  
@@ -18,7 +20,7 @@ export default async function Home(props) {
      )
 }
 
-const getMovieData = async (genre) => {
+const getMovieData = async (genre:string) => {
   const request = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`);
   let result = await request.json();
   return result.results;
