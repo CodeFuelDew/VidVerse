@@ -1,6 +1,14 @@
 const API_KEY = process.env.API_KEY;
+interface RequestItem {
+    title:String,
+    url:String,
+}
 
-export default {
+type RequestDictionary = {
+    [key : string]: RequestItem;
+}
+
+const requestDictionary : RequestDictionary =  {
     "fetchTrending": {
         title: "Trending",
         url: `/trending/all/week?api_key=${API_KEY}&language=en-US`
@@ -53,3 +61,5 @@ export default {
 
     },
 }
+
+export default requestDictionary;
