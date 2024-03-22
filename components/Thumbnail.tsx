@@ -2,8 +2,19 @@ import Image from "next/image";
 import {HandThumbUpIcon} from "@heroicons/react/24/outline"
 import moviePlaceholder from "../public/images/movie-placeholder.png"
 
-const Thumbnail = ({result}) => {
+export interface ResultItem {
+    id?:string,
+    title?:string,
+    original_name?:string,
+    backdrop_path?:string,
+    poster_path?:string,
+    vote_count?:number,
+    release_date?:string
+}
+
+const Thumbnail = (item :{result : ResultItem}) => {
     const BASE_URL= "https://image.tmdb.org/t/p/original/";
+    const {result} = item;
     return (
         <div 
         className="p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
