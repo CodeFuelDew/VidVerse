@@ -1,30 +1,36 @@
 import "./ProfileSection.css"
 import avatarImg from "../public/images/User-avatar.svg.png"
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect, SetStateAction, ChangeEvent, FormEvent } from "react";
+
+interface UserData {
+  name:string,
+  email:string
+}
 
 const ProfileSection = () => {
     const [editMode, setEditMode] = useState(false);
-    const [userData, setUserData] = useState({});
-    const [previousUserData, setPreviousUserData] = useState({});
+    const [userData, setUserData] = useState<UserData>({name:"John Smith", email:"john.smith@yahoo.com"});
+    const [previousUserData, setPreviousUserData] = useState<UserData>({name:"",email:""});
 
     
 
-    useEffect(() => {
-        setUserData(
-            {name: "John Smith",
-            email: "john.smith@gmail.com"
-            }
-        );
-    },[])
+    // useEffect(() => {
+    //     setUserData(
+    //         {name: "John Smith",
+    //         email: "john.smith@gmail.com"
+    //         }
+    //     );
+    // },[])
 
    
     
 
-    const handleInputChange = (event) => {
-        setUserData({ ...userData, [event.target.name]: event.target.value });
+    const handleInputChange = (event:ChangeEvent<HTMLInputElement>) => {
+        if(event.target)
+          setUserData({ ...userData, [event.target.name]: event.target.value });
       };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault();
     
         // Simulate sending updated user data to an API (replace with your actual logic)
@@ -33,7 +39,9 @@ const ProfileSection = () => {
         //   headers: { 'Content-Type': 'application/json' },
         //   body: JSON.stringify(userData),
         // });
-        setUserData({ ...userData, [event.target.name]: event.target.value });
+          // setUserData({ ...userData, [event.target.name]: event.target.value });
+          setUserData({ ...userData});
+
 
         setEditMode(false);
     }
