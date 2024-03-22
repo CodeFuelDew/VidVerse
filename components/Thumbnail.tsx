@@ -9,7 +9,8 @@ export interface ResultItem {
     backdrop_path?:string,
     poster_path?:string,
     vote_count?:number,
-    release_date?:string
+    release_date?:string,
+    overview?:string
 }
 
 const Thumbnail = (item :{result : ResultItem}) => {
